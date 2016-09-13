@@ -62,12 +62,12 @@ router.post('/reset/:token', function(req, res) {
           if (err) throw err
           console.log("Updated User: " + user);
           req.flash('success_msg', 'Password has been updated Successfully');
-         // done (err, user);
+        
           var smtpTransport = nodemailer.createTransport("SMTP",{
              service: 'Gmail',
                auth : {
-               user : 'rob.catapano@gmail.com',
-               pass : 'Poke53280'
+               user : 'YOUR GMAIL ACCOUNT',
+               pass : 'YOUR PASSWORD'
                }
           });
           var mailOptions = {
@@ -77,44 +77,13 @@ router.post('/reset/:token', function(req, res) {
             text: 'Hello,\n\n' +
             'This is a confirmation that the password for your account: ' + user.username + ' has just been changed.\n'
       };
-      smtpTransport.sendMail(mailOptions, function(err, req) {
-        done(err);
+			smtpTransport.sendMail(mailOptions, function(err, req) {
+				done(err);
       });
         });
 
-        ////
-
-        // I think this needs to be updated
-        //user.save(function(err) {
-        //  req.login(user, function(err) {
-        //    done(err, user);
-        //  });
-        //});
-
-        ///
-
-
       });
     },
-  //  function(user, done) {
-  //    var smtpTransport = nodemailer.createTransport("SMTP",{
-  //      service: 'Gmail',
-  //      auth : {
-  //      user : 'rob.catapano@gmail.com',
-  //      pass : 'Poke53280'
-  //         }
-  //    });
-  //    var mailOptions = {
-  //      to: user.email,
-  //      from: 'rob.catapano@gmail.com',
-  //      subject: 'Your password has been changed',
-  //      text: 'Hello,\n\n' +
-  //        'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
-  //    };
-  //    smtpTransport.sendMail(mailOptions, function(err, req) {
-  //      done(err);
-  //    });
-  //  }
   ], function(err) {
      res.redirect('/users/login');
   });
@@ -147,9 +116,8 @@ router.post('/forgot', function(req, res, next) {
       var smtpTransport = nodemailer.createTransport('SMTP', {
         service: 'Gmail',
         auth: {
-           user: "rob.catapano@gmail.com",
-            pass: "Poke53280"
-        }
+           user: "YOUR GMAIL ACCOUNT",
+            pass: "YOUR PASSWORD
       });
       var mailOptions = {
         to: user.email,
